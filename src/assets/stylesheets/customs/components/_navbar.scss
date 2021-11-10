@@ -1,0 +1,57 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 30px;
+  background: $primary;
+  &-select-btn {
+    display: flex;
+    align-items: center;
+    background: $light;
+    padding: 8px 0 8px 16px;
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      box-shadow: 0px 0px 10px rgba(#04123a, 30%);
+      border-radius: 20px 0 0 20px !important;
+    }
+  }
+  &-option-list {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    padding: 25px 19px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(#04123a, 15%);
+    background: #fff;
+    > li {
+      padding: 11px 6px;
+      margin-bottom: 5px;
+      font-size: 20px;
+      text-align: center;
+      &:hover,
+      &:focus {
+        padding: 10px 6px;
+        cursor: pointer;
+        border: 1px solid $warning;
+        box-sizing: border-box;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 15px;
+      }
+    }
+  }
+}
+.header-logo {
+  text-indent: 101%;
+  overflow: hidden;
+  white-space: nowrap;
+  > a {
+    width: 149px;
+    height: 41px;
+    background-image: url('https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/logo.png?raw=true');
+    background-repeat: no-repeat;
+  }
+}

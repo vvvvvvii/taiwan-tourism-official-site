@@ -1,0 +1,19 @@
+.list {
+  &-item {
+    display: flex;
+    align-items: center;
+    background: rgba($primary, 0.3);
+    border-radius: $border-radius-sm;
+    font-size: $font-size-md;
+    margin-bottom: 20px;
+    padding: 24px 40px;
+    &-title {
+      border-radius: $border-radius-sm;
+      padding: 24px 55px;
+      color: $light;
+    }
+  }
+  &-item:last-child {
+    margin-bottom: 40px;
+  }
+}

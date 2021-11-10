@@ -1,0 +1,20 @@
+.btn {
+  border-radius: $btn-border-radius-sm;
+  padding: 23px 14px;
+  &-success {
+    color: $light;
+  }
+  &-pagination {
+    padding: 10px 14px;
+    border-radius: 50%;
+  }
+  &-arrow {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+  }
+}
+.arrow-icon {
+  font-size: 3rem;
+}

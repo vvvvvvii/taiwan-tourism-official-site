@@ -1,0 +1,32 @@
+.card {
+  border-radius: $border-radius;
+  border: none;
+  &-img-top {
+    object-fit: cover;
+    height: 270px;
+  }
+  &-img {
+    object-fit: cover;
+    border-radius: $border-radius-sm;
+    height: 526px;
+  }
+  &-title {
+    text-align: center;
+    color: $dark;
+    font-weight: bold;
+  }
+  &-img-title {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    writing-mode: vertical-rl;
+    margin: 0;
+    padding: 28px 14px;
+    background: rgba($white, 0.8);
+    border-radius: 15px 0px 0px 15px;
+  }
+  &-text {
+    color: $dark;
+  }
+}
