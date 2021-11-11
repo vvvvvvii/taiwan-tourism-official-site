@@ -1,7 +1,19 @@
 .btn {
   border-radius: $btn-border-radius-sm;
   padding: 23px 14px;
+  &-sm {
+    border-radius: $btn-border-radius-lg;
+    padding: 13px 26px;
+  }
+  &-lg {
+    border-radius: $btn-border-radius-lg;
+    padding: 13px 16px 13px 75px;
+  }
   &-success {
+    color: $light;
+  }
+  &-outline-warning:hover,
+  &-outline-warning.active {
     color: $light;
   }
   &-pagination {
