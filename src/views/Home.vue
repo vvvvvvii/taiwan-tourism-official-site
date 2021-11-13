@@ -9,25 +9,9 @@
       :freeMode="true"
       class="swiper-wrapper"
     >
-      <SwiperSlide class="swiper-slide tab">
+      <SwiperSlide class="swiper-slide tab" v-for="warning in cxlWarning" :key="warning.ID">
         <i class="bi bi-exclamation-triangle-fill"></i>
-        <span class="ms-5">slide</span>
-      </SwiperSlide>
-      <SwiperSlide class="swiper-slide tab">
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <span class="ms-5">slide</span>
-      </SwiperSlide>
-      <SwiperSlide class="swiper-slide tab">
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <span class="ms-5">slide</span>
-      </SwiperSlide>
-      <SwiperSlide class="swiper-slide tab">
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <span class="ms-5">slide</span>
-      </SwiperSlide>
-      <SwiperSlide class="swiper-slide tab">
-        <i class="bi bi-exclamation-triangle-fill"></i>
-        <span class="ms-5">slide</span>
+        <span class="ms-5">{{ warning.WarningContent }}</span>
       </SwiperSlide>
     </Swiper>
   </div>
@@ -72,7 +56,7 @@
       <h2 class="section-title">兩大城市 教你拍起 EMO 圖！</h2>
       <ul class="row">
         <li class="col-md-6">
-          <a href="#" class="card bg-primary">
+          <router-link to="/article" class="card bg-primary">
             <img
               src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/kaohsiung.jpeg?raw=true"
               alt="2021 高雄旅遊景點一日遊"
@@ -89,7 +73,7 @@
                 />
               </div>
             </div>
-          </a>
+          </router-link>
         </li>
         <li class="col-md-6">
           <a href="#" class="card bg-primary">
@@ -129,19 +113,21 @@
       </div>
       <div class="swiper mb-10">
         <Swiper :slidesPerView="3.5" :spaceBetween="20" :freeMode="true" class="swiper-wrapper">
-          <SwiperSlide class="swiper-slide">
-            <a href="#" title="花蓮星巴克貨櫃屋" class="text-dark">
-              <div class="position-relative mb-4">
-                <img
-                  src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/hualien.png?raw=true"
-                  alt="花蓮"
-                  class="w-100"
-                />
-                <h4 class="card-img-title">花蓮</h4>
-              </div>
-              <p class="fs-md text-center">花蓮星巴克貨櫃屋</p>
-            </a>
-          </SwiperSlide>
+          <template v-for="(spot, spotIndex) in popularScenicSpots" :key="spot.Name">
+            <SwiperSlide class="swiper-slide" v-if="spotIndex < 12">
+              <a href="#" :title="spot.Name" class="text-dark">
+                <div class="position-relative mb-4">
+                  <img
+                    :src="spot.Picture.PictureUrl1"
+                    :alt="spot.Picture.PictureDescription1"
+                    class="card-img"
+                  />
+                  <h4 class="card-img-title">{{ spot.City }}</h4>
+                </div>
+                <p class="fs-md text-center">{{ spot.Name }}</p>
+              </a>
+            </SwiperSlide>
+          </template>
         </Swiper>
       </div>
       <div class="btn read-more-btn">
@@ -174,7 +160,7 @@
               <img
                 src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/contribute.jpeg?raw=true"
                 alt="關於墾丁回憶..."
-                class="card-img mb-5"
+                class="card-img-lg mb-5"
               />
               <div class="border border-warning rounded-1 px-3 pt-3 pb-7">
                 <h4 class="mb-2">
@@ -193,7 +179,7 @@
               <img
                 src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/contribute2.jpeg?raw=true"
                 alt="對於台北巷弄早午餐？"
-                class="card-img mb-5"
+                class="card-img-lg mb-5"
               />
               <div class="border border-warning rounded-1 px-3 pt-3 pb-7">
                 <h4 class="mb-2">
@@ -212,7 +198,7 @@
               <img
                 src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/contribute3.jpeg?raw=true"
                 alt="廟的文化"
-                class="card-img mb-5"
+                class="card-img-lg mb-5"
               />
               <div class="border border-warning rounded-1 px-3 pt-3 pb-7">
                 <h4 class="mb-2">
@@ -239,11 +225,24 @@
     <div class="section pt-0 text-center">
       <h2 class="section-title">〔 活動告示 〕</h2>
       <ul>
-        <li class="list-item">
-          <p class="fs-xxl fw-bold text-center w-25">2021.10.29</p>
-          <div class="bg-warning list-item-title">疫情說明</div>
-          <p class="ms-3">【 二級警戒延長至 11/15 】五大口罩鬆綁場所一次看！</p>
-        </li>
+        <template v-for="(warning, warningIndex) in cxlWarning" :key="warning.ID">
+          <template v-if="warningIndex < 3">
+            <li class="list-item" v-if="warning.OpenTime">
+              <p class="fs-xxl fw-bold text-center w-25">
+                {{ warning.UpdateTime.split('T')[0].split('-').join('.') }}
+              </p>
+              <div class="bg-success list-item-title">景點維修</div>
+              <p class="ms-3">〔 {{ warning.Name }} 〕{{ warning.OpenTime }}</p>
+            </li>
+            <li class="list-item" v-if="warning.Cycle">
+              <p class="fs-xxl fw-bold text-center w-25">
+                {{ warning.StartTime.split('T')[0].split('-').join('.') }}
+              </p>
+              <div class="bg-primary text-dark list-item-title">暫停辦理</div>
+              <p class="ms-3">〔 {{ warning.Name }} 〕{{ warning.Cycle }}</p>
+            </li>
+          </template>
+        </template>
       </ul>
       <div class="btn read-more-btn">
         <p class="fs-lg">了解更多詳情</p>
@@ -271,7 +270,163 @@
 </template>
 
 <script>
+import JsSHA from 'jssha';
+
 export default {
   name: 'Home',
+  data() {
+    return {
+      scenicSpots: [],
+      activities: [],
+      popularScenicSpots: [],
+      cxlScenicSpots: [],
+      cxlActivities: [],
+    };
+  },
+  methods: {
+    // 取得、整理景點資料
+    getAllScenicSpotData() {
+      this.axios
+        .get('https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$format=JSON', {
+          headers: this.getAuthorizationHeader(),
+        })
+        .then((res) => {
+          this.scenicSpots = res.data;
+          // 篩出可能正在施工、維修而暫停開放的設施
+          // 刪掉正常開放、但關鍵字仍有打到「如遇颱風天、其他天然災害之影響或實施整修工程等」之類的項目
+          this.cxlScenicSpots = this.scenicSpots.filter(
+            (spot) => spot.OpenTime
+              && (spot.OpenTime.includes('施工')
+                || spot.OpenTime.includes('暫停')
+                || spot.OpenTime.includes('整修')
+                || spot.OpenTime.includes('封閉'))
+              && !spot.OpenTime.includes('遇颱風天')
+              && !spot.OpenTime.includes('遇天候不佳')
+              && !spot.OpenTime.includes('上午')
+              && !spot.OpenTime.includes('下午'),
+          );
+          this.cxlScenicSpots.forEach((cxlSpot, cxlSpotIndex) => {
+            const item = this.cxlScenicSpots[cxlSpotIndex];
+            item.Name = cxlSpot.Name.split('(部分封閉中)').join('');
+            item.Name = cxlSpot.Name.split('(封閉整修中)').join('');
+            item.WarningContent = `${cxlSpot.Name} 整修中`;
+          });
+          // 篩出人氣景點
+          this.popularScenicSpots = this.scenicSpots.filter(
+            (spot) => spot.Description
+              && Object.keys(spot.Picture).length !== 0
+              && spot.Description.includes('熱門'),
+          );
+          // 如果人氣景點裡沒有 City 屬性，補上去
+          this.popularScenicSpots.forEach((spot, spotIndex) => {
+            if (Object.keys(spot).includes('City') === false) {
+              this.popularScenicSpots[spotIndex].City = spot.Address.includes('縣')
+                ? `${spot.Address.split('縣')[0]}縣`
+                : `${spot.Address.split('市')[0]}市`;
+            }
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // 取得、整理活動資料
+    getAllActivitiesData() {
+      this.axios
+        .get('https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$format=JSON', {
+          headers: this.getAuthorizationHeader(),
+        })
+        .then((res) => {
+          const { data } = res;
+          // 資料以 StartTime 從新排到舊
+          const activitiesTime = data
+            .map((activity) => activity.StartTime)
+            .sort()
+            .reverse();
+          // 依照新舊順序放進 this.activities
+          activitiesTime.forEach((item, index) => {
+            for (let key = 0; key < data.length; key += 1) {
+              if (data[key].StartTime === item) {
+                this.activities[index] = data[key];
+                break;
+              }
+            }
+          });
+          // 重複的資料刪掉
+          this.activities = [...new Set(this.activities)];
+          // 處理 cxlActivities
+          this.cxlActivities = this.activities.filter(
+            (activity) => (activity.Cycle && activity.Cycle.includes('暫停'))
+              || (activity.Description
+                && (activity.Description.includes('延期')
+                  || activity.Description.includes('暫停')
+                  || activity.Description.includes('取消'))),
+          );
+          this.cxlActivities.forEach((cxlActivity, cxlActivityIndex) => {
+            const item = this.cxlActivities[cxlActivityIndex];
+            // 整理要顯示在畫面上的警告提示字串
+            if (cxlActivity.Description.includes('延期')) {
+              item.cxlReason = '延期';
+            } else if (cxlActivity.Description.includes('暫停')) {
+              item.cxlReason = '暫停';
+            } else {
+              item.cxlReason = '取消';
+            }
+            item.Name = cxlActivity.Name.split('2021').join('');
+            item.Name = cxlActivity.Name.split('年').join('');
+            item.Name = cxlActivity.Name.split('【取消辦理】').join('');
+            item.Name = cxlActivity.Name.split('[取消辦理]').join('');
+            item.Name = cxlActivity.Name.split('取消辦理').join('');
+            item.Name = cxlActivity.Name.split('[延期舉辦]').join('');
+            item.Name = cxlActivity.Name.split('(因應近日疫情嚴峻，活動已取消)').join('');
+            item.WarningContent = `${cxlActivity.Name} ${cxlActivity.cxlReason}`;
+            // 如果 cxlActivity 裡沒有 Cycle 屬性，補上去
+            if (Object.keys(cxlActivity).includes('Cycle') === false) {
+              item.Cycle = item.WarningContent;
+            }
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    // api header setting
+    getAuthorizationHeader() {
+      const GMTString = new Date().toGMTString();
+      const ShaObj = new JsSHA('SHA-1', 'TEXT');
+      ShaObj.setHMACKey(process.env.VUE_APP_PATH, 'TEXT');
+      ShaObj.update(`x-date: ${GMTString}`);
+      const HMAC = ShaObj.getHMAC('B64');
+      const Authorization = `hmac username="${process.env.VUE_APP_API}",algorithm="hmac-sha1", headers="x-date", signature="${HMAC}"`;
+      return { Authorization, 'X-Date': GMTString };
+    },
+  },
+  computed: {
+    cxlWarning() {
+      // cxlScenicSpots 和 cxlActivities 照順序擺在一起從最新排到最後，取前六項
+      // 如果 cxlActivities 的 startDate 比 cxlScenicSpots 的 UpdateTime 更新，就 push 進 this.cxlWarning
+      // 保留上一筆 cxlScenicSpots 的 UpdateTime 比較舊的資料，繼續跟下一筆 cxlActivities 的 startDate 比較
+      // 直到 this.cxlWarning 長度為 6
+      const arr = [];
+      if (this.cxlActivities.length !== 0 && this.cxlScenicSpots.length !== 0) {
+        let o = this.cxlActivities[0];
+        let n = this.cxlScenicSpots[0];
+        for (let i = 0; i < 6; i += 1) {
+          if (o.StartTime > n.UpdateTime) {
+            arr.push(o);
+            o = this.cxlActivities[i + 1];
+          } else {
+            arr.push(n);
+            n = this.cxlScenicSpots[i + 1];
+          }
+        }
+      }
+      return arr;
+    },
+  },
+  created() {
+    this.getAllScenicSpotData();
+    this.getAllActivitiesData();
+  },
 };
 </script>

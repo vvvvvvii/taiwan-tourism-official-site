@@ -1,14 +1,20 @@
 .card {
   border-radius: $border-radius;
   border: none;
-  &-img-top {
-    object-fit: cover;
-    height: 270px;
-  }
   &-img {
     object-fit: cover;
-    border-radius: $border-radius-sm;
-    height: 526px;
+    border-radius: $border-radius;
+    height: 300px;
+    &-top {
+      object-fit: cover;
+      height: 270px;
+    }
+    &-lg {
+      object-fit: cover;
+      border-radius: $border-radius-sm;
+      width: 100%;
+      height: 526px;
+    }
   }
   &-title {
     text-align: center;
