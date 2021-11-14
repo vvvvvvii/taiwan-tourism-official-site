@@ -16,16 +16,12 @@
       <a href="#" class="text-dark">活動行事曆</a>
     </div>
     <div class="container">
-      <a
-        href="https://vvvvvvii.github.io/taiwan-tourism-official-site/dist/#/"
-        title="回到首頁"
-        class="mb-6"
-      >
+      <router-link href="/" title="回到首頁" class="mb-6">
         <img
           src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/logo.png?raw=true"
           alt="footer-logo"
         />
-      </a>
+      </router-link>
       <div class="d-flex justify-content-between">
         <div class="d-flex">
           <p class="fs-xxs">Design 芬妮</p>

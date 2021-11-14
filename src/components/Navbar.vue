@@ -1,10 +1,7 @@
 <template>
   <div class="navbar">
     <h1 class="header-logo">
-      <a
-        href="https://vvvvvvii.github.io/taiwan-tourism-official-site/dist/#/"
-        title="回到首頁"
-      ></a>
+      <router-link href="/" title="回到首頁"></router-link>
     </h1>
     <div class="input-group bg-light rounded-3 w-50">
       <input
