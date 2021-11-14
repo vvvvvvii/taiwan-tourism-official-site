@@ -1,6 +1,9 @@
 <template>
-  <Navbar></Navbar>
-  <router-view></router-view>
+  <Navbar @emit-navbar-data="getEmitNavbarData"></Navbar>
+  <router-view
+    :searchPropsContent="searchContent"
+    :searchSpotPropsOption="searchSpotOption"
+  ></router-view>
   <Footer></Footer>
 </template>
 
@@ -12,9 +15,21 @@ import Navbar from '@/components/Navbar.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
+  data() {
+    return {
+      searchContent: '',
+      searchSpotOption: '',
+    };
+  },
   components: {
     Navbar,
     Footer,
+  },
+  methods: {
+    getEmitNavbarData(searchContent, searchSpotOption) {
+      this.searchContent = searchContent;
+      this.searchSpotOption = searchSpotOption;
+    },
   },
 };
 </script>

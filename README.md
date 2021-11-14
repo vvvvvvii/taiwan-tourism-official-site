@@ -1,24 +1,4 @@
 # taiwan-tourism-official-site
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+本網站採用 F2E 3rd 芬妮之設計稿 [芬妮之設計稿](https://2021.thef2e.com/users/6296427084285739079?week=1&type=1).
+RWD 和頁碼功能來不及完成
