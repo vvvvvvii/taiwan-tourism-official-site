@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <h1 class="header-logo">
-      <router-link href="/" title="回到首頁"></router-link>
+      <router-link to="/" title="回到首頁"></router-link>
     </h1>
     <div class="input-group bg-light rounded-3 w-50">
       <input

@@ -16,7 +16,7 @@
       <a href="#" class="text-dark">活動行事曆</a>
     </div>
     <div class="container">
-      <router-link href="/" title="回到首頁" class="mb-6">
+      <router-link to="/" title="回到首頁" class="mb-6">
         <img
           src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/logo.png?raw=true"
           alt="footer-logo"
