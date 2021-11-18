@@ -1,0 +1,19 @@
+.w-md {
+  &-25 {
+    @include media-breakpoint-up(md) {
+      width: 25% !important;
+    }
+  }
+  &-50 {
+    @include media-breakpoint-up(md) {
+      width: 50% !important;
+    }
+  }
+}
+.w-lg {
+  &-100 {
+    @include media-breakpoint-up(lg) {
+      width: 100% !important;
+    }
+  }
+}

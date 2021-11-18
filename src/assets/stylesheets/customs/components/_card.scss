@@ -1,6 +1,15 @@
 .card {
   border-radius: $border-radius;
   border: none;
+  &-body {
+    padding: 1rem;
+    @include media-breakpoint-up(md) {
+      padding: 1.25rem;
+    }
+    @include media-breakpoint-up(lg) {
+      padding: 1.5rem;
+    }
+  }
   &-img {
     object-fit: cover;
     border-radius: $border-radius;
@@ -20,6 +29,13 @@
     text-align: center;
     color: $dark;
     font-weight: bold;
+    font-size: $font-size-sm;
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-lg;
+    }
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-xxl;
+    }
   }
   &-img-title {
     position: absolute;
@@ -34,5 +50,9 @@
   }
   &-text {
     color: $dark;
+    font-size: $font-size-xxs;
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-sm;
+    }
   }
 }

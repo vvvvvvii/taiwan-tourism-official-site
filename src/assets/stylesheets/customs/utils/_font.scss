@@ -1,0 +1,24 @@
+.fs-md {
+  &-md {
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-md !important;
+    }
+  }
+  &-lg {
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-lg !important;
+    }
+  }
+  &-xxl {
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-xxl !important;
+    }
+  }
+}
+.fs-lg {
+  &-xxl {
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-xxl !important;
+    }
+  }
+}

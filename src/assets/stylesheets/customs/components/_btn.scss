@@ -1,6 +1,9 @@
 .btn {
   border-radius: $btn-border-radius-sm;
-  padding: 23px 14px;
+  padding: 14px 18px;
+  @include media-breakpoint-up(md) {
+    padding: 23px 14px;
+  }
   &-sm {
     border-radius: $btn-border-radius-lg;
     padding: 13px 26px;
@@ -28,5 +31,8 @@
   }
 }
 .arrow-icon {
-  font-size: 3rem;
+  font-size: 2rem;
+  @include media-breakpoint-up(md) {
+    font-size: 3rem;
+  }
 }

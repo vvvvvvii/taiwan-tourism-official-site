@@ -2,11 +2,12 @@
   <!-- 景點公告 -->
   <div class="swiper py-7">
     <Swiper
-      :slidesPerView="4.5"
-      :spaceBetween="30"
       :loop="true"
       :centeredSlides="true"
       :freeMode="true"
+      :slides-per-view="4.5"
+      :space-between="30"
+      :breakpoints="swiperOption.warningBreakpoints"
       class="swiper-wrapper"
     >
       <SwiperSlide class="swiper-slide tab" v-for="warning in cxlWarning" :key="warning.ID">
@@ -24,6 +25,7 @@
       :centeredSlides="true"
       :freeMode="true"
       :pagination="true"
+      :breakpoints="swiperOption.bannerBreakpoints"
       class="swiper-wrapper pb-4"
     >
       <SwiperSlide class="swiper-slide mb-4">
@@ -33,14 +35,14 @@
           class="w-100"
         />
       </SwiperSlide>
-      <SwiperSlide class="swiper-slide">
+      <SwiperSlide class="swiper-slide mb-4">
         <img
           src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/banner.png?raw=true"
           alt="駁二特區彩虹步道即將開幕"
           class="w-100"
         />
       </SwiperSlide>
-      <SwiperSlide class="swiper-slide">
+      <SwiperSlide class="swiper-slide mb-4">
         <img
           src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/banner.png?raw=true"
           alt="駁二特區彩虹步道即將開幕"
@@ -55,7 +57,7 @@
       <h2 class="section-title mb-0">從台灣發現更多美好</h2>
       <h2 class="section-title">兩大城市 教你拍起 EMO 圖！</h2>
       <ul class="row">
-        <li class="col-md-6">
+        <li class="col-md-6 mb-8">
           <router-link to="/article" class="card bg-primary">
             <img
               src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/kaohsiung.jpeg?raw=true"
@@ -63,13 +65,14 @@
               title="2021 高雄旅遊景點一日遊"
               class="card-img-top"
             />
-            <div class="card-body p-6">
+            <div class="card-body">
               <h3 class="card-title mb-10">2021 高雄旅遊景點 一日遊</h3>
               <div class="position-relative float-end">
                 <p class="card-text position-absolute">一起了解，你從未發現高雄</p>
                 <img
                   src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/arrow.png?raw=true"
                   alt="arrow img"
+                  class="w-lg-100 w-75"
                 />
               </div>
             </div>
@@ -83,13 +86,14 @@
               title="2021 台北旅遊景點一日遊"
               class="card-img-top"
             />
-            <div class="card-body p-6">
+            <div class="card-body">
               <h3 class="card-title mb-10">2021 台北旅遊景點 一日遊</h3>
               <div class="position-relative float-end">
                 <p class="card-text position-absolute">一起了解，你從未發現台北</p>
                 <img
                   src="https://github.com/vvvvvvii/taiwan-tourism-official-site/blob/main/public/img/arrow.png?raw=true"
                   alt="arrow img"
+                  class="w-lg-100 w-75"
                 />
               </div>
             </div>
@@ -100,7 +104,7 @@
     <!-- 人氣景點探索 -->
     <div class="section pt-0 text-center">
       <div class="d-flex justify-content-between align-items-center mb-9">
-        <h2 class="fs-xxl">人氣景點探索</h2>
+        <h2 class="fs-md-xxl fs-md">人氣景點探索</h2>
         <div class="d-flex align-items-center">
           <div class="btn btn-success btn-pagination">
             <i class="bi bi-chevron-left"></i>
@@ -111,8 +115,14 @@
           </div>
         </div>
       </div>
-      <div class="swiper mb-10">
-        <Swiper :slidesPerView="3.5" :spaceBetween="20" :freeMode="true" class="swiper-wrapper">
+      <div class="swiper mb-md-10 mb-3">
+        <Swiper
+          :slidesPerView="3.5"
+          :spaceBetween="20"
+          :freeMode="true"
+          :breakpoints="swiperOption.spotBreakpoints"
+          class="swiper-wrapper"
+        >
           <template v-for="(spot, spotIndex) in popularScenicSpots" :key="spot.Name">
             <SwiperSlide class="swiper-slide" v-if="spotIndex < 12">
               <a href="#" :title="spot.Name" class="text-dark">
@@ -131,7 +141,7 @@
         </Swiper>
       </div>
       <div class="btn read-more-btn">
-        <p class="fs-lg">了解更多詳情</p>
+        <p class="fs-md-lg fs-xxs">了解更多詳情</p>
         <i class="bi bi-arrow-right-short arrow-icon btn-arrow"></i>
       </div>
     </div>
@@ -139,7 +149,7 @@
     <div class="section">
       <div class="row align-items-center mb-9">
         <div class="offset-4 col-4">
-          <h2 class="fs-xxl text-center">〔 投稿專區 〕</h2>
+          <h2 class="fs-md-xxl fs-md text-center">〔 投稿專區 〕</h2>
         </div>
         <div class="col-4">
           <div class="d-flex justify-content-end align-items-center">
@@ -153,8 +163,14 @@
           </div>
         </div>
       </div>
-      <div class="swiper mb-10">
-        <Swiper :slidesPerView="2.5" :spaceBetween="22" :freeMode="true" class="swiper-wrapper">
+      <div class="swiper mb-md-10 mb-3">
+        <Swiper
+          :slidesPerView="2.5"
+          :spaceBetween="22"
+          :freeMode="true"
+          :breakpoints="swiperOption.contributeBreakpoints"
+          class="swiper-wrapper"
+        >
           <SwiperSlide class="swiper-slide">
             <a href="#" title="關於墾丁回憶..." class="text-dark">
               <img
@@ -216,7 +232,7 @@
       </div>
       <div class="text-center">
         <div class="btn read-more-btn">
-          <p class="fs-lg">了解更多詳情</p>
+          <p class="fs-md-lg fs-xxs">了解更多詳情</p>
           <i class="bi bi-arrow-right-short arrow-icon btn-arrow"></i>
         </div>
       </div>
@@ -228,24 +244,36 @@
         <template v-for="(warning, warningIndex) in cxlWarning" :key="warning.ID">
           <template v-if="warningIndex < 3">
             <li class="list-item" v-if="warning.OpenTime">
-              <p class="fs-xxl fw-bold text-center w-25">
-                {{ warning.UpdateTime.split('T')[0].split('-').join('.') }}
+              <div
+                class="d-flex justify-content-md-between align-items-center w-md-50 mb-2 mb-md-0"
+              >
+                <p class="fs-lg-xxl fs-md-lg fs-xxs fw-bold text-center">
+                  {{ warning.UpdateTime.split('T')[0].split('-').join('.') }}
+                </p>
+                <div class="bg-success list-item-title ms-3 ms-lg-0">景點維修</div>
+              </div>
+              <p class="w-md-50 ms-md-3 fs-md-md fs-xs">
+                〔 {{ warning.Name }} 〕{{ warning.OpenTime }}
               </p>
-              <div class="bg-success list-item-title">景點維修</div>
-              <p class="ms-3">〔 {{ warning.Name }} 〕{{ warning.OpenTime }}</p>
             </li>
             <li class="list-item" v-if="warning.Cycle">
-              <p class="fs-xxl fw-bold text-center w-25">
-                {{ warning.StartTime.split('T')[0].split('-').join('.') }}
+              <div
+                class="d-flex justify-content-md-between align-items-center w-md-50 mb-2 mb-md-0"
+              >
+                <p class="fs-lg-xxl fs-md-lg fs-xxs fw-bold text-center">
+                  {{ warning.StartTime.split('T')[0].split('-').join('.') }}
+                </p>
+                <div class="bg-primary text-dark list-item-title ms-3 ms-lg-0">暫停辦理</div>
+              </div>
+              <p class="w-md-50 ms-md-3 fs-md-md fs-xs">
+                〔 {{ warning.Name }} 〕{{ warning.Cycle }}
               </p>
-              <div class="bg-primary text-dark list-item-title">暫停辦理</div>
-              <p class="ms-3">〔 {{ warning.Name }} 〕{{ warning.Cycle }}</p>
             </li>
           </template>
         </template>
       </ul>
       <div class="btn read-more-btn">
-        <p class="fs-lg">了解更多詳情</p>
+        <p class="fs-md-lg fs-xxs">了解更多詳情</p>
         <i class="bi bi-arrow-right-short arrow-icon btn-arrow"></i>
       </div>
     </div>
@@ -260,7 +288,7 @@
         </p>
         <div class="text-center">
           <div class="btn btn-success fw-bold w-50 position-relative">
-            <p class="fs-lg">了解更多詳情</p>
+            <p class="fs-md-lg fs-xxs">了解更多詳情</p>
             <i class="bi bi-arrow-right-short arrow-icon btn-arrow"></i>
           </div>
         </div>
@@ -281,6 +309,72 @@ export default {
       popularScenicSpots: [],
       cxlScenicSpots: [],
       cxlActivities: [],
+      swiperOption: {
+        warningBreakpoints: {
+          1: {
+            slidesPerView: 1.5,
+            spaceBetween: 12,
+          },
+          576: {
+            slidesPerView: 2.1,
+            spaceBetween: 15,
+          },
+          768: {
+            slidesPerView: 3.5,
+            spaceBetween: 15,
+          },
+          992: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+          },
+          1200: {
+            slidesPerView: 4.5,
+            spaceBetween: 30,
+          },
+        },
+        bannerBreakpoints: {
+          1: {
+            slidesPerView: 1.2,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 1.5,
+            spaceBetween: 8,
+          },
+          1200: {
+            slidesPerView: 2.05,
+            spaceBetween: 15,
+          },
+        },
+        spotBreakpoints: {
+          1: {
+            slidesPerView: 1.5,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 2.5,
+            spaceBetween: 8,
+          },
+          1200: {
+            slidesPerView: 3.5,
+            spaceBetween: 20,
+          },
+        },
+        contributeBreakpoints: {
+          1: {
+            slidesPerView: 1.25,
+            spaceBetween: 8,
+          },
+          576: {
+            slidesPerView: 1.5,
+            spaceBetween: 8,
+          },
+          1200: {
+            slidesPerView: 2.5,
+            spaceBetween: 22,
+          },
+        },
+      },
     };
   },
   methods: {
