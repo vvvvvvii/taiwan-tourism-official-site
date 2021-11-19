@@ -105,7 +105,7 @@
     <div class="section pt-0 text-center">
       <div class="d-flex justify-content-between align-items-center mb-9">
         <h2 class="fs-md-xxl fs-md">人氣景點探索</h2>
-        <div class="d-flex align-items-center">
+        <div class="d-md-flex d-none align-items-center">
           <div class="btn btn-success btn-pagination">
             <i class="bi bi-chevron-left"></i>
           </div>
@@ -148,11 +148,11 @@
     <!-- 投稿專區 -->
     <div class="section">
       <div class="row align-items-center mb-9">
-        <div class="offset-4 col-4">
+        <div class="offset-md-4 col-md-4">
           <h2 class="fs-md-xxl fs-md text-center">〔 投稿專區 〕</h2>
         </div>
-        <div class="col-4">
-          <div class="d-flex justify-content-end align-items-center">
+        <div class="col-md-4">
+          <div class="d-md-flex d-none justify-content-end align-items-center">
             <div class="btn btn-success btn-pagination">
               <i class="bi bi-chevron-left"></i>
             </div>
@@ -377,6 +377,7 @@ export default {
       },
     };
   },
+  props: ['searchPropsContent', 'searchSpotPropsOption'],
   methods: {
     // 取得、整理景點資料
     getAllScenicSpotData() {
