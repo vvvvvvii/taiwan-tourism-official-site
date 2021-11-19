@@ -2,39 +2,77 @@
   <div class="container">
     <!-- 選單 -->
     <div class="section">
-      <p class="mb-10">
+      <p class="mb-10 fs-md-sm fs-xxs">
         首頁
         <i class="bi bi-chevron-right ms-4"></i>
         <span class="ms-4 pb-1 border-bottom border-dark">人氣景點探索</span>
       </p>
-      <h2 class="fs-xxxl fw-bold text-center mb-4">景點列表</h2>
-      <p class="fs-lg text-center mb-10">地點</p>
-      <ul class="d-flex justify-content-center" @click="changeSearchSpotOption">
-        <li
-          class="btn btn-lg btn-outline-warning fs-lg position-relative"
+      <h2 class="fs-md-xxxl fs-lg fw-bold text-center mb-4">景點列表</h2>
+      <p class="fs-md-lg fs-xxs text-center mb-md-10 mb-4">地點</p>
+      <div @click="changeSearchSpotOption">
+        <!-- 手機版地點 -->
+        <div
+          class="btn btn-lg btn-outline-warning d-md-none mb-3 fs-xs position-relative"
           :class="{ active: optionListShow }"
           @click="showOptions"
         >
           <div class="d-flex">
-            <p class="fs-md">{{ optionListContent }}</p>
+            <p class="fs-md-lg fs-xs">{{ optionListContent }}</p>
             <i class="bi bi-chevron-down ms-10"></i>
           </div>
           <ul v-show="optionListShow" class="navbar-option-list">
             <li v-for="city in cities" :key="city">{{ city }}</li>
           </ul>
-        </li>
-        <li class="btn btn-sm btn-outline-warning fs-lg ms-10">熱門景點</li>
-        <li class="btn btn-sm btn-outline-warning fs-lg ms-5">網美景點</li>
-        <li class="btn btn-sm btn-outline-warning fs-lg ms-5">戶外景點</li>
-        <li class="btn btn-sm btn-outline-warning fs-lg ms-5">運動景點</li>
-        <li class="btn btn-sm btn-outline-warning fs-lg ms-5">DIY 景點</li>
-      </ul>
+        </div>
+        <ul
+          class="
+            d-md-flex
+            justify-content-md-center
+            overflow-md-visible
+            white-space-md-normal white-space-nowrap
+            overflow-scroll
+          "
+        >
+          <li
+            class="btn btn-lg btn-outline-warning d-md-inline-block d-none position-relative"
+            :class="{ active: optionListShow }"
+            @click="showOptions"
+          >
+            <div class="d-flex">
+              <p class="fs-lg-md fs-md-sm fs-xs">{{ optionListContent }}</p>
+              <i class="bi bi-chevron-down ms-lg-10 ms-2"></i>
+            </div>
+            <ul v-show="optionListShow" class="navbar-option-list">
+              <li v-for="city in cities" :key="city">{{ city }}</li>
+            </ul>
+          </li>
+          <li class="btn btn-sm btn-outline-warning fs-lg-md fs-md-sm fs-xs ms-lg-10 ms-2">
+            熱門景點
+          </li>
+          <li class="btn btn-sm btn-outline-warning fs-lg-md fs-md-sm fs-xs ms-lg-5 ms-2">
+            網美景點
+          </li>
+          <li class="btn btn-sm btn-outline-warning fs-lg-md fs-md-sm fs-xs ms-lg-5 ms-2">
+            戶外景點
+          </li>
+          <li class="btn btn-sm btn-outline-warning fs-lg-md fs-md-sm fs-xs ms-lg-5 ms-2">
+            運動景點
+          </li>
+          <li class="btn btn-sm btn-outline-warning fs-lg-md fs-md-sm fs-xs ms-lg-5 ms-2">
+            DIY 景點
+          </li>
+        </ul>
+      </div>
     </div>
     <!-- 列表 -->
     <div class="section pt-0">
       <div class="row">
         <template v-for="(spot, spotIndex) in filterSpot" :key="spot.ID">
-          <div class="col-4" :class="{ 'mb-10': spotIndex < 9 }" v-if="spotIndex < 12">
+          <div
+            class="col-md-4 col-6"
+            :class="{ 'mb-md-10': spotIndex < 9, 'mb-7': spotIndex < 9 }"
+            v-if="spotIndex < 12"
+          >
             <a href="#" :title="spot.Name" class="text-dark">
               <div class="position-relative mb-4">
                 <img
@@ -44,7 +82,7 @@
                 />
                 <h4 class="card-img-title">{{ spot.City }}</h4>
               </div>
-              <p class="fs-md text-center">{{ spot.Name }}</p>
+              <p class="fs-md-md fs-xxs text-center">{{ spot.Name }}</p>
             </a>
           </div>
         </template>
@@ -154,9 +192,9 @@ export default {
       this.optionListShow = !this.optionListShow;
     },
     changeSearchSpotOption(e) {
-      if (e.target.innerHTML.length <= 6 && e.target.innerHTML.length > 3) {
+      if (e.target.innerHTML.trim().length <= 6 && e.target.innerHTML.length > 3) {
         // 點了「地點」以外的景點種類選項
-        for (let i = 1; i < 5; i += 1) {
+        for (let i = 1; i <= 5; i += 1) {
           if (e.target.parentNode.children[i] !== e.target) {
             e.target.parentNode.children[i].classList.remove('active');
           }
@@ -189,12 +227,15 @@ export default {
         // 有選地點時，先篩地點
         filterArr = this.scenicSpots.filter((spot) => spot.City.includes(this.optionListContent));
       }
-      if (this.searchSpotOption === '熱門景點' || this.searchSpotPropsOption === '熱門景點') {
+      if (
+        this.searchSpotOption.trim() === '熱門景點'
+        || this.searchSpotPropsOption === '熱門景點'
+      ) {
         filterArr = filterArr.filter(
           (spot) => spot.Description && spot.Description.includes('熱門'),
         );
       } else if (
-        this.searchSpotOption === '網美景點'
+        this.searchSpotOption.trim() === '網美景點'
         || this.searchSpotPropsOption === '網美景點'
       ) {
         filterArr = filterArr.filter(
@@ -204,7 +245,7 @@ export default {
               || spot.Classes.includes('文化類')),
         );
       } else if (
-        this.searchSpotOption === '戶外景點'
+        this.searchSpotOption.trim() === '戶外景點'
         || this.searchSpotPropsOption === '戶外景點'
       ) {
         filterArr = filterArr.filter(
@@ -212,12 +253,12 @@ export default {
             && (spot.Classes.includes('自然風景類') || spot.Classes.includes('生態類')),
         );
       } else if (
-        this.searchSpotOption === '運動景點'
+        this.searchSpotOption.trim() === '運動景點'
         || this.searchSpotPropsOption === '運動景點'
       ) {
         filterArr = filterArr.filter((spot) => spot.Classes && spot.Classes.includes('體育健身類'));
       } else if (
-        this.searchSpotOption === 'DIY 景點'
+        this.searchSpotOption.trim() === 'DIY 景點'
         || this.searchSpotPropsOption === 'DIY 景點'
       ) {
         filterArr = filterArr.filter((spot) => spot.Classes && spot.Classes.includes('觀光工廠類'));

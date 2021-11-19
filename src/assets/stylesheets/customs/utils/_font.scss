@@ -26,6 +26,11 @@
   }
 }
 .fs-lg {
+  &-lg {
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-lg !important;
+    }
+  }
   &-xxl {
     @include media-breakpoint-up(lg) {
       font-size: $font-size-xxl !important;

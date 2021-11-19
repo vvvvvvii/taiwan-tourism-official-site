@@ -13,7 +13,10 @@
   &-img {
     object-fit: cover;
     border-radius: $border-radius;
-    height: 300px;
+    height: 200px;
+    @include media-breakpoint-up(md) {
+      height: 300px;
+    }
     &-top {
       object-fit: cover;
       height: 270px;
@@ -47,6 +50,10 @@
     padding: 28px 14px;
     background: rgba($white, 0.8);
     border-radius: 15px 0px 0px 15px;
+    font-size: $font-size-xxs;
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-sm;
+    }
   }
   &-text {
     color: $dark;

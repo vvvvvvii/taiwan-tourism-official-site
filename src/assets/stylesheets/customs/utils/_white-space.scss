@@ -1,0 +1,10 @@
+.white-space {
+  &-nowrap {
+    white-space: nowrap;
+  }
+  &-md-normal {
+    @include media-breakpoint-up(md) {
+      white-space: normal;
+    }
+  }
+}
