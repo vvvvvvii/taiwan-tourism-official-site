@@ -1,4 +1,14 @@
 .fs-md {
+  &-xxs {
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-xxs !important;
+    }
+  }
+  &-sm {
+    @include media-breakpoint-up(md) {
+      font-size: $font-size-sm !important;
+    }
+  }
   &-md {
     @include media-breakpoint-up(md) {
       font-size: $font-size-md !important;
