@@ -5,7 +5,7 @@
 使用技術：
 
 - Vue3
-- Vue axios 串接政府 api
+- Vue axios 串接政府 API
 - Vue Router 管理前端路由
 - 使用 ESLint 規範，撰寫簡潔統一程式碼
 - 以 Bootstrap 5 搭配 SCSS ，以達成客製化需求
